@@ -2,6 +2,6 @@
 
 namespace Orkhanahmadov\Sipgate\Tests;
 
-class TestCase
+class TestCase extends \PHPUnit\Framework\TestCase
 {
 }
