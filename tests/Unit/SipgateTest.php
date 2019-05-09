@@ -106,7 +106,6 @@ class SipgateTest extends TestCase
         $user = new User(['id' => 'userId']);
         $device = new Device($user, ['id' => 'deviceId']);
         $call = $this->sipgate->initiateCall($device, '123', '456');
-
-        print_r($call);
+        // todo: test response
     }
 }
