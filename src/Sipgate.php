@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\User;
 
-class Sipgate
+class Sipgate implements SipgateInterface
 {
     /**
      * @var string
@@ -29,14 +29,14 @@ class Sipgate
         $this->client = new Client(['base_uri' => 'https://api.sipgate.com/v2/']);
     }
 
-    public function account()
+    public function account(): array
     {
-        return $this->sendRequest('account', 'GET');
+        return $this->sendRequest('account');
     }
 
     public function users(): array
     {
-        $response = $this->sendRequest('users', 'GET');
+        $response = $this->sendRequest('users');
 
         $users = [];
         foreach ($response['items'] as $user) {
@@ -48,14 +48,28 @@ class Sipgate
 
     public function devices(User $user): array
     {
-        $response = $this->sendRequest($user->id.'/devices', 'GET');
+        $response = $this->sendRequest($user->id.'/devices');
 
         $devices = [];
         foreach ($response['items'] as $device) {
-            array_push($devices, new Device($device));
+            array_push($devices, new Device($user, $device));
         }
 
         return $devices;
+    }
+
+    public function initiateCall(Device $device, $callerNumber, $callee)
+    {
+        $response = $this->sendRequest('sessions/calls', 'POST', [
+            'json' => [
+                'deviceId' => $device->id,
+                'caller' => $device->user->id,
+                'callerId' => $callerNumber,
+                'callee' => $callee,
+            ]
+        ]);
+
+        return $response;
     }
 
     /**
@@ -65,7 +79,7 @@ class Sipgate
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function sendRequest(string $url, string $method = 'POST', array $options = []): array
+    private function sendRequest(string $url, string $method = 'GET', array $options = []): array
     {
         $response = $this->client->request($method, $url, array_merge(
             [

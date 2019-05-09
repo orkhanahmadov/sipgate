@@ -65,7 +65,7 @@ class SipgateTest extends TestCase
         $this->assertTrue($users[0]->admin);
     }
 
-    public function test_userDevices()
+    public function test_devices()
     {
         $this->guzzler
             ->expects($this->once())
@@ -94,5 +94,19 @@ class SipgateTest extends TestCase
         $this->assertIsArray($devices[0]->registered);
         $this->assertEquals('567890', $devices[0]->emergencyAddressId);
         $this->assertEquals('https://api.sipgate.com/v2/addresses/567890', $devices[0]->addressUrl);
+    }
+
+    public function test_initiateCall()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->post('https://api.sipgate.com/v2/sessions/calls')
+            ->willRespond(new Response(200, [], file_get_contents(__DIR__.'/../__fixtures__/sessions/new_call.json')));
+
+        $user = new User(['id' => 'userId']);
+        $device = new Device($user, ['id' => 'deviceId']);
+        $call = $this->sipgate->initiateCall($device, '123', '456');
+
+        print_r($call);
     }
 }
