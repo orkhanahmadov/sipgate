@@ -4,7 +4,7 @@ namespace Orkhanahmadov\Sipgate\Exceptions;
 
 use Exception;
 
-class PropertyNotFoundException extends Exception
+class ResourcePropertyNotFoundException extends Exception
 {
     public function __construct($property)
     {

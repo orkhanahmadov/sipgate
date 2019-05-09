@@ -4,10 +4,10 @@ namespace Orkhanahmadov\Sipgate\Tests\Unit;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Sipgate\Exceptions\PropertyNotFoundException;
+use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Sipgate;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
-use Orkhanahmadov\Sipgate\User;
+use Orkhanahmadov\Sipgate\Resources\User;
 
 class SipgateTest extends TestCase
 {
@@ -63,9 +63,36 @@ class SipgateTest extends TestCase
         $this->assertIsArray($users[0]->directDialIds);
         $this->assertEquals('567890', $users[0]->directDialIds[0]);
         $this->assertTrue($users[0]->admin);
+    }
 
-        $this->expectException(PropertyNotFoundException::class);
-        $this->expectExceptionMessage('fakeProperty property not found.');
-        $users[0]->fakeProperty;
+    public function test_userDevices()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get('https://api.sipgate.com/v2/fakeidhere/devices')
+            ->willRespond(new Response(200, [], file_get_contents(__DIR__.'/../__fixtures__/devices.json')));
+
+        $user = new User(['id' => 'fakeidhere']);
+        $devices = $this->sipgate->devices($user);
+        $this->assertIsArray($devices);
+        $this->assertInstanceOf(Device::class, $devices[0]);
+        $this->assertEquals('e2', $devices[0]->id);
+        $this->assertEquals('VoIP-Telefon von Firstname Lastname', $devices[0]->alias);
+        $this->assertEquals('REGISTER', $devices[0]->type);
+        $this->assertFalse($devices[0]->online);
+        $this->assertFalse($devices[0]->dnd);
+        $this->assertIsArray($devices[0]->activePhonelines);
+        $this->assertEquals('p0', $devices[0]->activePhonelines[0]['id']);
+        $this->assertEquals('Firstname Lastname', $devices[0]->activePhonelines[0]['alias']);
+        $this->assertIsArray($devices[0]->activeGroups);
+        $this->assertIsArray($devices[0]->credentials);
+        $this->assertEquals('123456', $devices[0]->credentials['username']);
+        $this->assertEquals('secret', $devices[0]->credentials['password']);
+        $this->assertEquals('sipgate.de', $devices[0]->credentials['sipServer']);
+        $this->assertEquals('sipgate.de', $devices[0]->credentials['outboundProxy']);
+        $this->assertEquals('wss://tls01.sipgate.de', $devices[0]->credentials['sipServerWebsocketUrl']);
+        $this->assertIsArray($devices[0]->registered);
+        $this->assertEquals('567890', $devices[0]->emergencyAddressId);
+        $this->assertEquals('https://api.sipgate.com/v2/addresses/567890', $devices[0]->addressUrl);
     }
 }

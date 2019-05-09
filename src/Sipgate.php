@@ -3,6 +3,8 @@
 namespace Orkhanahmadov\Sipgate;
 
 use GuzzleHttp\Client;
+use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\User;
 
 class Sipgate
 {
@@ -32,16 +34,28 @@ class Sipgate
         return $this->sendRequest('account', 'GET');
     }
 
-    public function users()
+    public function users(): array
     {
-        $result = $this->sendRequest('users', 'GET');
+        $response = $this->sendRequest('users', 'GET');
 
         $users = [];
-        foreach ($result['items'] as $user) {
+        foreach ($response['items'] as $user) {
             array_push($users, new User($user));
         }
 
         return $users;
+    }
+
+    public function devices(User $user): array
+    {
+        $response = $this->sendRequest($user->id.'/devices', 'GET');
+
+        $devices = [];
+        foreach ($response['items'] as $device) {
+            array_push($devices, new Device($device));
+        }
+
+        return $devices;
     }
 
     /**
