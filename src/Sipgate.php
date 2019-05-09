@@ -32,6 +32,18 @@ class Sipgate
         return $this->sendRequest('account', 'GET');
     }
 
+    public function users()
+    {
+        $result = $this->sendRequest('users', 'GET');
+
+        $users = [];
+        foreach ($result['items'] as $user) {
+            array_push($users, new User($user));
+        }
+
+        return $users;
+    }
+
     /**
      * @param string $url
      * @param string $method
