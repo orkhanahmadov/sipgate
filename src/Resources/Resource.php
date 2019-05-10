@@ -10,6 +10,7 @@ abstract class Resource
 
     /**
      * Resource constructor.
+     *
      * @param array $properties
      */
     public function __construct(array $properties = [])
@@ -19,8 +20,10 @@ abstract class Resource
 
     /**
      * @param string $name
-     * @return mixed
+     *
      * @throws ResourcePropertyNotFoundException
+     *
+     * @return mixed
      */
     public function __get(string $name)
     {
