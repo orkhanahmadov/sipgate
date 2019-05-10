@@ -7,7 +7,7 @@ use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Resources\User;
 
-class Sipgate implements SipgateInterface
+class Sipgate implements SIPInterface
 {
     /**
      * @var string

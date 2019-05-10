@@ -4,7 +4,7 @@ namespace Orkhanahmadov\Sipgate;
 
 use Orkhanahmadov\Sipgate\Resources\Device;
 
-interface SipgateInterface
+interface SIPInterface
 {
     /**
      * @return array
