@@ -73,7 +73,7 @@ class Sipgate implements SipgateInterface
         return $response;
     }
 
-    public function history(array $options = [])
+    public function history(array $options = []): array
     {
         $response = $this->sendRequest('history', 'GET', ['query' => $options]);
 

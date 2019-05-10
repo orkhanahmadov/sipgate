@@ -15,5 +15,5 @@ interface SipgateInterface
 
     public function initiateCall(Device $device, $callerNumber, $callee);
 
-    public function history(array $options = []);
+    public function history(array $options = []): array;
 }
