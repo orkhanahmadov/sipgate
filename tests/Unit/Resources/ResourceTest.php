@@ -5,7 +5,6 @@ namespace Orkhanahmadov\Sipgate\Tests\Unit;
 use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 use Orkhanahmadov\Sipgate\Resources\Resource;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
-use Orkhanahmadov\Sipgate\Resources\User;
 
 class ResourceTest extends TestCase
 {
