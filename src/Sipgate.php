@@ -64,10 +64,10 @@ class Sipgate implements SipgateInterface
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
                 'deviceId' => $device->id,
-                'caller' => $device->user->id,
+                'caller'   => $device->user->id,
                 'callerId' => $callerId,
-                'callee' => $callee,
-            ]
+                'callee'   => $callee,
+            ],
         ]);
 
         return $response;
@@ -88,16 +88,18 @@ class Sipgate implements SipgateInterface
     /**
      * @param string $url
      * @param string $method
-     * @param array $options
-     * @return array
+     * @param array  $options
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
      */
     private function sendRequest(string $url, string $method = 'GET', array $options = []): array
     {
         $response = $this->client->request($method, $url, array_merge(
             [
                 'headers' => ['Accept' => 'application/json'],
-                'auth' => [$this->username, $this->password]
+                'auth'    => [$this->username, $this->password],
             ],
             $options
         ));

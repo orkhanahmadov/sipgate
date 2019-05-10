@@ -6,9 +6,9 @@ use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\History;
+use Orkhanahmadov\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Sipgate;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
-use Orkhanahmadov\Sipgate\Resources\User;
 
 class SipgateTest extends TestCase
 {
