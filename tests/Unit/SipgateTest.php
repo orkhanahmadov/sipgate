@@ -5,6 +5,7 @@ namespace Orkhanahmadov\Sipgate\Tests\Unit;
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Sipgate;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
 use Orkhanahmadov\Sipgate\Resources\User;
@@ -107,5 +108,42 @@ class SipgateTest extends TestCase
         $device = new Device($user, ['id' => 'deviceId']);
         $call = $this->sipgate->initiateCall($device, '123', '456');
         // todo: test response
+    }
+
+    public function test_history()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get('https://api.sipgate.com/v2/history')
+            ->willRespond(new Response(200, [], file_get_contents(__DIR__.'/../__fixtures__/history.json')));
+
+        $history = $this->sipgate->history([]);
+
+        $this->assertIsArray($history);
+        $this->assertInstanceOf(History::class, $history[0]);
+        $this->assertEquals('123456', $history[0]->id);
+        $this->assertEquals('+4911111', $history[0]->source);
+        $this->assertEquals('+4988888', $history[0]->target);
+        $this->assertEquals('source alias', $history[0]->sourceAlias);
+        $this->assertEquals('target alias', $history[0]->targetAlias);
+        $this->assertEquals('CALL', $history[0]->type);
+        $this->assertEquals('2019-04-30T10:03:03Z', $history[0]->created);
+        $this->assertEquals('2019-04-30T10:03:39Z', $history[0]->lastModified);
+        $this->assertEquals('MISSED_OUTGOING', $history[0]->direction);
+        $this->assertFalse($history[0]->incoming);
+        $this->assertEquals('NOPICKUP', $history[0]->status);
+        $this->assertIsArray($history[0]->connectionIds);
+        $this->assertTrue($history[0]->read);
+        $this->assertFalse($history[0]->archived);
+        $this->assertEquals('something', $history[0]->note);
+        $this->assertIsArray($history[0]->endpoints);
+        $this->assertFalse($history[0]->starred);
+        $this->assertIsArray($history[0]->labels);
+        $this->assertEquals('54566B150B0C0D3A5D564', $history[0]->callId);
+        $this->assertEquals('', $history[0]->recordingUrl);
+        $this->assertIsArray($history[0]->recordings);
+        $this->assertEquals(18, $history[0]->duration);
+        $this->assertEquals('', $history[0]->responder);
+        $this->assertEquals('', $history[0]->responderAlias);
     }
 }

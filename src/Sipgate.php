@@ -4,6 +4,7 @@ namespace Orkhanahmadov\Sipgate;
 
 use GuzzleHttp\Client;
 use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Resources\User;
 
 class Sipgate implements SipgateInterface
@@ -58,18 +59,30 @@ class Sipgate implements SipgateInterface
         return $devices;
     }
 
-    public function initiateCall(Device $device, $callerNumber, $callee)
+    public function initiateCall(Device $device, $callee, $callerId = null)
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
                 'deviceId' => $device->id,
                 'caller' => $device->user->id,
-                'callerId' => $callerNumber,
+                'callerId' => $callerId,
                 'callee' => $callee,
             ]
         ]);
 
         return $response;
+    }
+
+    public function history(array $options = [])
+    {
+        $response = $this->sendRequest('history', 'GET', ['query' => $options]);
+
+        $history = [];
+        foreach ($response['items'] as $item) {
+            array_push($history, new History($item));
+        }
+
+        return $history;
     }
 
     /**
