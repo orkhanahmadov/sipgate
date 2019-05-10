@@ -18,14 +18,24 @@ namespace Orkhanahmadov\Sipgate\Resources;
 class Device extends Resource
 {
     /**
-     * @var User
+     * @var User|string
      */
     public $user;
 
-    public function __construct(User $user, array $properties = [])
+    /**
+     * Device constructor.
+     * @param User|string $user
+     * @param array $properties
+     */
+    public function __construct($user, array $properties = [])
     {
         parent::__construct($properties);
 
         $this->user = $user;
+    }
+
+    public function userId()
+    {
+        return $this->user instanceof User ? $this->user->id : $this->user;
     }
 }

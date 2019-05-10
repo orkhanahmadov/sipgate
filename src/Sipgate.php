@@ -71,7 +71,7 @@ class Sipgate implements SIPInterface
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
                 'deviceId' => $device->id,
-                'caller'   => $device->user->id,
+                'caller'   => $device->userId(),
                 'callerId' => $callerId,
                 'callee'   => $callee,
             ],
