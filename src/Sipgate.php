@@ -47,9 +47,16 @@ class Sipgate implements SipgateInterface
         return $users;
     }
 
-    public function devices(User $user): array
+    /**
+     * @param User|string $user
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function devices($user): array
     {
-        $response = $this->sendRequest($user->id.'/devices');
+        $userId = $user instanceof User ? $user->id : $user;
+
+        $response = $this->sendRequest($userId.'/devices');
 
         $devices = [];
         foreach ($response['items'] as $device) {
