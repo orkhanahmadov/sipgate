@@ -12,22 +12,35 @@ class Sipgate implements SIPInterface
     /**
      * @var string
      */
-    private $username;
+    private $username = null;
     /**
      * @var string
      */
-    private $password;
+    private $password = null;
     /**
      * @var Client
      */
     private $client;
 
-    public function __construct(string $username, string $password)
+    public function __construct(?string $username = null, ?string $password = null)
     {
         $this->username = $username;
         $this->password = $password;
 
         $this->client = new Client(['base_uri' => 'https://api.sipgate.com/v2/']);
+    }
+
+    /**
+     * @param string $username
+     * @param string $password
+     * @return Sipgate
+     */
+    public function setUserCredentials(string $username, string $password)
+    {
+        $this->username = $username;
+        $this->password = $password;
+
+        return $this;
     }
 
     public function account(): array
@@ -120,5 +133,21 @@ class Sipgate implements SIPInterface
     public function setClient(Client $client): void
     {
         $this->client = $client;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }

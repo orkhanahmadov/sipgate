@@ -6,6 +6,8 @@ use Orkhanahmadov\Sipgate\Resources\Device;
 
 interface SIPInterface
 {
+    public function setUserCredentials(string $username, string $password);
+
     /**
      * @return array
      */
