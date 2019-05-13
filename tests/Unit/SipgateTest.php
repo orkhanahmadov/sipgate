@@ -30,10 +30,10 @@ class SipgateTest extends TestCase
         $this->sipgate->setClient($this->guzzler->getClient(['base_uri' => $this->sipgateBaseUri]));
     }
 
-    public function test_setUserCredentials()
+    public function test_setBasicAuthCredentials()
     {
         $sipgate = new Sipgate();
-        $sipgate->setUserCredentials('new user', 'new password');
+        $sipgate->setBasicAuthCredentials('new user', 'new password');
 
         $this->assertEquals('new user', $sipgate->getUsername());
         $this->assertEquals('new password', $sipgate->getPassword());

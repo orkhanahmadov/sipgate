@@ -12,7 +12,7 @@ interface SIPInterface
      *
      * @return mixed
      */
-    public function setUserCredentials(string $username, string $password);
+    public function setBasicAuthCredentials(string $username, string $password);
 
     /**
      * @return array

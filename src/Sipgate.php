@@ -42,7 +42,7 @@ class Sipgate implements SIPInterface
      *
      * @return Sipgate
      */
-    public function setUserCredentials(string $username, string $password)
+    public function setBasicAuthCredentials(string $username, string $password)
     {
         $this->username = $username;
         $this->password = $password;
