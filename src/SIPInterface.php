@@ -6,6 +6,11 @@ use Orkhanahmadov\Sipgate\Resources\Device;
 
 interface SIPInterface
 {
+    /**
+     * @param string $username
+     * @param string $password
+     * @return mixed
+     */
     public function setUserCredentials(string $username, string $password);
 
     /**

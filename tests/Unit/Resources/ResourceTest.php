@@ -8,33 +8,39 @@ use Orkhanahmadov\Sipgate\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {
-    public function test_throws_exception_if_property_is_not_set()
+    /**
+     * @var \PHPUnit\Framework\MockObject\MockObject
+     */
+    private $stub;
+
+    protected function setUp()
     {
-        $this->expectException(ResourcePropertyNotFoundException::class);
-        $this->expectExceptionMessage('unsetProp property not found.');
+        parent::setUp();
 
-        $stub = $this->getMockBuilder(Resource::class)
-            ->setMethods(['__construct'])
-            ->setConstructorArgs([['setProp' => 'setVal']])
-            ->getMock();
-
-        $this->assertEquals('setVal', $stub->setProp);
-        $stub->unsetProp;
-    }
-
-    public function test_json_serializable()
-    {
-        $stub = $this->getMockBuilder(Resource::class)
+        $this->stub = $this->getMockBuilder(Resource::class)
             ->setMethods(['__construct'])
             ->setConstructorArgs([[
                 'prop1' => 'val1',
                 'prop2' => 'val2'
             ]])
             ->getMock();
+    }
 
+    public function test_throws_exception_if_property_is_not_set()
+    {
+        $this->expectException(ResourcePropertyNotFoundException::class);
+        $this->expectExceptionMessage('unsetProp property not found.');
+
+        $this->assertEquals('val1', $this->stub->prop1);
+        $this->assertEquals('val2', $this->stub->prop2);
+        $this->stub->unsetProp;
+    }
+
+    public function test_json_serializable()
+    {
         $this->assertEquals([
             'prop1' => 'val1',
             'prop2' => 'val2'
-        ], $stub->jsonSerialize());
+        ], $this->stub->jsonSerialize());
     }
 }

@@ -7,6 +7,9 @@ use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 
 abstract class Resource implements JsonSerializable
 {
+    /**
+     * @var array
+     */
     private $properties = [];
 
     /**
@@ -35,6 +38,9 @@ abstract class Resource implements JsonSerializable
         return $this->properties[$name];
     }
 
+    /**
+     * @return array
+     */
     public function jsonSerialize()
     {
         return $this->properties;

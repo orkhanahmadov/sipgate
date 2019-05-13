@@ -34,6 +34,9 @@ class Device extends Resource
         $this->user = $user;
     }
 
+    /**
+     * @return string
+     */
     public function userId()
     {
         return $this->user instanceof User ? $this->user->id : $this->user;

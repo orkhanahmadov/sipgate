@@ -39,4 +39,4 @@ Please see [CHANGELOG](https://github.com/orkhanahmadov/sipgate/blob/master/CHAN
 Please see [CONTRIBUTING](https://github.com/orkhanahmadov/sipgate/blob/master/CONTRIBUTING.md) for details.
 
 ### License
-The MIT License (MIT). Please see [License file](https://github.com/orkhanahmadov/sipgate/blob/master/LICENSE.md) for more information.
+The MIT License (MIT). Please see [LICENSE file](https://github.com/orkhanahmadov/sipgate/blob/master/LICENSE.md) for more information.

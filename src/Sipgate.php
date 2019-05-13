@@ -10,11 +10,11 @@ use Orkhanahmadov\Sipgate\Resources\User;
 class Sipgate implements SIPInterface
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $username = null;
     /**
-     * @var string
+     * @var string|null
      */
     private $password = null;
     /**
@@ -22,6 +22,12 @@ class Sipgate implements SIPInterface
      */
     private $client;
 
+    /**
+     * Sipgate constructor.
+     *
+     * @param string|null $username
+     * @param string|null $password
+     */
     public function __construct(?string $username = null, ?string $password = null)
     {
         $this->username = $username;
@@ -33,6 +39,7 @@ class Sipgate implements SIPInterface
     /**
      * @param string $username
      * @param string $password
+     *
      * @return Sipgate
      */
     public function setUserCredentials(string $username, string $password)
@@ -43,11 +50,21 @@ class Sipgate implements SIPInterface
         return $this;
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
     public function account(): array
     {
         return $this->sendRequest('account');
     }
 
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
     public function users(): array
     {
         $response = $this->sendRequest('users');
@@ -62,8 +79,10 @@ class Sipgate implements SIPInterface
 
     /**
      * @param User|string $user
-     * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
      */
     public function devices($user): array
     {
@@ -79,6 +98,15 @@ class Sipgate implements SIPInterface
         return $devices;
     }
 
+    /**
+     * @param Device $device
+     * @param $callee
+     * @param null $callerId
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array|mixed
+     */
     public function initiateCall(Device $device, $callee, $callerId = null)
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
@@ -93,6 +121,13 @@ class Sipgate implements SIPInterface
         return $response;
     }
 
+    /**
+     * @param array $options
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
     public function history(array $options = []): array
     {
         $response = $this->sendRequest('history', 'GET', ['query' => $options]);
@@ -136,17 +171,17 @@ class Sipgate implements SIPInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
