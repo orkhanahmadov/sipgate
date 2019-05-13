@@ -21,7 +21,7 @@ class ResourceTest extends TestCase
             ->setMethods(['__construct'])
             ->setConstructorArgs([[
                 'prop1' => 'val1',
-                'prop2' => 'val2'
+                'prop2' => 'val2',
             ]])
             ->getMock();
     }
@@ -40,7 +40,7 @@ class ResourceTest extends TestCase
     {
         $this->assertEquals([
             'prop1' => 'val1',
-            'prop2' => 'val2'
+            'prop2' => 'val2',
         ], $this->stub->jsonSerialize());
     }
 }
