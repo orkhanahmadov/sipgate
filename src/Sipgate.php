@@ -99,8 +99,8 @@ class Sipgate implements SIPInterface
     }
 
     /**
-     * @param Device $device
-     * @param string|int $callee
+     * @param Device          $device
+     * @param string|int      $callee
      * @param string|int|null $callerId
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
