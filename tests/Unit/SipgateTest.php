@@ -83,7 +83,7 @@ class SipgateTest extends TestCase
         $this->guzzler
             ->expects($this->once())
             ->post('https://api.sipgate.com/v2/sessions/calls')
-            ->willRespond(new Response(200, [], "{}"));
+            ->willRespond(new Response(200, [], '{}'));
 
         $user = new User(['id' => 'userId']);
         $device = new Device($user, ['id' => 'deviceId']);

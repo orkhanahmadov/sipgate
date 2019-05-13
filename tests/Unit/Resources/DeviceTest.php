@@ -2,9 +2,7 @@
 
 namespace Orkhanahmadov\Sipgate\Tests\Unit;
 
-use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 use Orkhanahmadov\Sipgate\Resources\Device;
-use Orkhanahmadov\Sipgate\Resources\Resource;
 use Orkhanahmadov\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
 

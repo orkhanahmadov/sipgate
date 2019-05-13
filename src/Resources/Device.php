@@ -24,8 +24,9 @@ class Device extends Resource
 
     /**
      * Device constructor.
+     *
      * @param User|string $user
-     * @param array $properties
+     * @param array       $properties
      */
     public function __construct($user, array $properties = [])
     {
