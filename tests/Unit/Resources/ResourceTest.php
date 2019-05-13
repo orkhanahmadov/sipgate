@@ -11,10 +11,30 @@ class ResourceTest extends TestCase
     public function test_throws_exception_if_property_is_not_set()
     {
         $this->expectException(ResourcePropertyNotFoundException::class);
-        $this->expectExceptionMessage('unsetProperty property not found.');
+        $this->expectExceptionMessage('unsetProp property not found.');
 
-        $stub = $this->getMockForAbstractClass(Resource::class);
+        $stub = $this->getMockBuilder(Resource::class)
+            ->setMethods(['__construct'])
+            ->setConstructorArgs([['setProp' => 'setVal']])
+            ->getMock();
 
-        $stub->unsetProperty;
+        $this->assertEquals('setVal', $stub->setProp);
+        $stub->unsetProp;
+    }
+
+    public function test_json_serializable()
+    {
+        $stub = $this->getMockBuilder(Resource::class)
+            ->setMethods(['__construct'])
+            ->setConstructorArgs([[
+                'prop1' => 'val1',
+                'prop2' => 'val2'
+            ]])
+            ->getMock();
+
+        $this->assertEquals([
+            'prop1' => 'val1',
+            'prop2' => 'val2'
+        ], $stub->jsonSerialize());
     }
 }

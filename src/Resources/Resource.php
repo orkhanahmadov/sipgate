@@ -2,9 +2,10 @@
 
 namespace Orkhanahmadov\Sipgate\Resources;
 
+use JsonSerializable;
 use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 
-abstract class Resource
+abstract class Resource implements JsonSerializable
 {
     private $properties = [];
 
@@ -32,5 +33,10 @@ abstract class Resource
         }
 
         return $this->properties[$name];
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->properties;
     }
 }
