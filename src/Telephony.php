@@ -4,7 +4,7 @@ namespace Orkhanahmadov\Sipgate;
 
 use Orkhanahmadov\Sipgate\Resources\Device;
 
-interface SIPInterface
+interface Telephony
 {
     /**
      * @param string $username
