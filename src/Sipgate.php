@@ -99,7 +99,7 @@ class Sipgate implements Telephony
     }
 
     /**
-     * @param Device          $device
+     * @param Device|string   $device
      * @param string|int      $callee
      * @param string|int|null $callerId
      *
@@ -107,11 +107,11 @@ class Sipgate implements Telephony
      *
      * @return string
      */
-    public function initiateCall(Device $device, $callee, $callerId = null): string
+    public function initiateCall($device, $callee, $callerId = null): string
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
-                'caller'   => $device->id,
+                'caller'   => $device instanceof Device ? $device->id : $device,
                 'callee'   => $callee,
                 'callerId' => $callerId,
             ],
