@@ -53,9 +53,9 @@ class Sipgate implements Telephony
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
-     * @return array
+     * @return array|null
      */
-    public function account(): array
+    public function account(): ?array
     {
         return $this->sendRequest('account');
     }
@@ -133,8 +133,8 @@ class Sipgate implements Telephony
     {
         $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
             'json' => [
-                'announcement' => $announcement,
-                'value' => $value
+                'value' => $value,
+                'announcement' => $announcement
             ]
         ]);
 

@@ -15,9 +15,9 @@ interface Telephony
     public function setBasicAuthCredentials(string $username, string $password);
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function account(): array;
+    public function account(): ?array;
 
     /**
      * @return array
