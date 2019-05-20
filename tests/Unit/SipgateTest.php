@@ -71,8 +71,7 @@ class SipgateTest extends TestCase
             ->get('https://api.sipgate.com/v2/fakeidhere/devices')
             ->willRespond(new Response(200, [], '{"items":[{"id": "e1"}]}'));
 
-        $user = new User(['id' => 'fakeidhere']);
-        $devices = $this->sipgate->devices($user);
+        $devices = $this->sipgate->devices(new User(['id' => 'fakeidhere']));
         $this->assertIsArray($devices);
         $this->assertInstanceOf(Device::class, $devices[0]);
         $this->assertEquals('e1', $devices[0]->id);
@@ -83,11 +82,33 @@ class SipgateTest extends TestCase
         $this->guzzler
             ->expects($this->once())
             ->post('https://api.sipgate.com/v2/sessions/calls')
+            ->withBody('{"caller":"deviceId","callee":"123","callerId":"456"}')
             ->willRespond(new Response(200, [], '{"sessionId": "ABC1234"}'));
 
-        $user = new User(['id' => 'userId']);
-        $device = new Device($user, ['id' => 'deviceId']);
-        $call = $this->sipgate->initiateCall($device, '123', '456');
+        $device = new Device(new User(), ['id' => 'deviceId']);
+        $call = $this->sipgate->initiateCall($device, '123', ['callerId' => '456']);
+        $this->assertEquals('ABC1234', $call);
+    }
+
+    public function test_initiateCall_with_recording()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->post('https://api.sipgate.com/v2/sessions/calls')
+            ->withBody('{"caller":"deviceId","callee":"123","callerId":null}')
+            ->willRespond(new Response(200, [], '{"sessionId": "ABC1234"}'));
+
+        $this->guzzler
+            ->expects($this->once())
+            ->put('https://api.sipgate.com/v2/calls/ABC1234/recording')
+            ->withBody('{"value":true,"announcement":true}')
+            ->willRespond(new Response(200, []));
+
+        $call = $this->sipgate->initiateCall(
+            new Device(new User(), ['id' => 'deviceId']),
+            '123',
+            ['recording' => ['value' => true, 'announcement' => true]]
+        );
         $this->assertEquals('ABC1234', $call);
     }
 

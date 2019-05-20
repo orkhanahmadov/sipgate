@@ -32,13 +32,13 @@ interface Telephony
     public function devices($user): array;
 
     /**
-     * @param Device|string   $device
-     * @param string|int      $callee
-     * @param string|int|null $callerId
+     * @param Device|string $device
+     * @param string|int    $callee
+     * @param array         $options
      *
      * @return string
      */
-    public function initiateCall($device, $callee, $callerId = null): string;
+    public function initiateCall($device, $callee, array $options = []): string;
 
     /**
      * @param string $callId
