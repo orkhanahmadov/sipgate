@@ -133,7 +133,7 @@ class Sipgate implements Telephony
     {
         $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
             'json' => [
-                'value' => $value,
+                'value'        => $value,
                 'announcement' => $announcement
             ]
         ]);
