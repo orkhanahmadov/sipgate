@@ -105,20 +105,19 @@ class Sipgate implements Telephony
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
-     * @return array|mixed
+     * @return string
      */
-    public function initiateCall(Device $device, $callee, $callerId = null)
+    public function initiateCall(Device $device, $callee, $callerId = null): string
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
-                'deviceId' => $device->id,
-                'caller'   => $device->userId(),
-                'callerId' => $callerId,
+                'caller'   => $device->id,
                 'callee'   => $callee,
+                'callerId' => $callerId,
             ],
         ]);
 
-        return $response;
+        return $response['sessionId'];
     }
 
     /**
