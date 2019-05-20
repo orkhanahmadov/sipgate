@@ -121,6 +121,27 @@ class Sipgate implements Telephony
     }
 
     /**
+     * @param string $callId
+     * @param bool   $value
+     * @param bool   $announcement
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return bool
+     */
+    public function recordCall(string $callId, bool $value, bool $announcement): bool
+    {
+        $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
+            'json' => [
+                'announcement' => $announcement,
+                'value' => $value
+            ]
+        ]);
+
+        return $value;
+    }
+
+    /**
      * @param array $options
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -146,9 +167,9 @@ class Sipgate implements Telephony
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
-     * @return array
+     * @return array|null
      */
-    private function sendRequest(string $url, string $method = 'GET', array $options = []): array
+    private function sendRequest(string $url, string $method = 'GET', array $options = []): ?array
     {
         $response = $this->client->request($method, $url, array_merge(
             [

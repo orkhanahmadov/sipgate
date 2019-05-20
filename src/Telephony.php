@@ -41,6 +41,15 @@ interface Telephony
     public function initiateCall($device, $callee, $callerId = null): string;
 
     /**
+     * @param string $callId
+     * @param bool   $value
+     * @param bool   $announcement
+     *
+     * @return bool
+     */
+    public function recordCall(string $callId, bool $value, bool $announcement): bool;
+
+    /**
      * @param array $options
      *
      * @return array

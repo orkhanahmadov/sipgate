@@ -91,6 +91,17 @@ class SipgateTest extends TestCase
         $this->assertEquals('ABC1234', $call);
     }
 
+    public function test_recordCall()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->put('https://api.sipgate.com/v2/calls/ABC123/recording')
+            ->withBody('{"announcement":true,"value":true}')
+            ->willRespond(new Response(204, []));
+
+        $this->assertTrue($this->sipgate->recordCall('ABC123', true, true));
+    }
+
     public function test_history()
     {
         $this->guzzler
