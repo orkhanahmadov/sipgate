@@ -99,9 +99,9 @@ class Sipgate implements Telephony
     }
 
     /**
-     * @param Device|string   $device
-     * @param string|int      $callee
-     * @param array           $options
+     * @param Device|string $device
+     * @param string|int    $callee
+     * @param array         $options
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
@@ -143,7 +143,7 @@ class Sipgate implements Telephony
             'json' => [
                 'value'        => $value,
                 'announcement' => $announcement,
-            ]
+            ],
         ]);
 
         return $value;
