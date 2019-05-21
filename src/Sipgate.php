@@ -100,7 +100,7 @@ class Sipgate implements Telephony
     }
 
     /**
-     * Returns currently established calls
+     * Returns currently established calls.
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
