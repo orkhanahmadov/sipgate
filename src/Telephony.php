@@ -49,13 +49,13 @@ interface Telephony
     /**
      * Initiates new call and returns session ID.
      *
-     * @param Device|string $device
-     * @param string|int    $callee
-     * @param array         $options
+     * @param Device|string   $device
+     * @param string|int      $callee
+     * @param string|int|null $callerId
      *
      * @return string
      */
-    public function initiateCall($device, $callee, array $options = []): string;
+    public function initiateCall($device, $callee, $callerId = null): string;
 
     /**
      * Starts or stops call recording.

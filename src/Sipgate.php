@@ -38,6 +38,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Sets basic auth credentials.
+     *
      * @param string $username
      * @param string $password
      *
@@ -52,6 +54,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Returns account details.
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return array|null
@@ -62,6 +66,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Returns all created users.
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return array
@@ -79,6 +85,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Returns user devices.
+     *
      * @param User|string $user
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -119,36 +127,32 @@ class Sipgate implements Telephony
     }
 
     /**
-     * @param Device|string $device
-     * @param string|int    $callee
-     * @param array         $options
+     * Initiates new call and returns session ID.
+     *
+     * @param Device|string   $device
+     * @param string|int      $callee
+     * @param string|int|null $callerId
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return string
      */
-    public function initiateCall($device, $callee, array $options = []): string
+    public function initiateCall($device, $callee, $callerId = null): string
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
                 'caller'   => $device instanceof Device ? $device->id : $device,
                 'callee'   => $callee,
-                'callerId' => isset($options['callerId']) ? $options['callerId'] : null,
+                'callerId' => $callerId,
             ],
         ]);
-
-        if (isset($options['recording'], $options['recording']['value'], $options['recording']['announcement'])) {
-            $this->recordCall(
-                $response['sessionId'],
-                $options['recording']['value'],
-                $options['recording']['announcement']
-            );
-        }
 
         return $response['sessionId'];
     }
 
     /**
+     * Starts or stops call recording.
+     *
      * @param string $callId
      * @param bool   $value
      * @param bool   $announcement
@@ -170,6 +174,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Returns call history.
+     *
      * @param array $options
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -189,6 +195,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Sends API requests to sipgate endpoint.
+     *
      * @param string $url
      * @param string $method
      * @param array  $options
@@ -211,6 +219,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Sets Guzzle client.
+     *
      * @param Client $client
      */
     public function setClient(Client $client): void
@@ -219,6 +229,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Sets base auth username.
+     *
      * @return string|null
      */
     public function getUsername(): ?string
@@ -227,6 +239,8 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Sets base auth password.
+     *
      * @return string|null
      */
     public function getPassword(): ?string
