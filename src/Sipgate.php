@@ -127,9 +127,9 @@ class Sipgate implements Telephony
     /**
      * Initiates new call and returns session ID.
      *
-     * @param Resources\Device|string   $device
-     * @param string|int      $callee
-     * @param string|int|null $callerId
+     * @param Resources\Device|string $device
+     * @param string|int              $callee
+     * @param string|int|null         $callerId
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
