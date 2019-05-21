@@ -4,6 +4,7 @@ namespace Orkhanahmadov\Sipgate\Tests\Unit;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
+use Orkhanahmadov\Sipgate\Resources\Call;
 use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Resources\User;
@@ -75,6 +76,19 @@ class SipgateTest extends TestCase
         $this->assertIsArray($devices);
         $this->assertInstanceOf(Device::class, $devices[0]);
         $this->assertEquals('e1', $devices[0]->id);
+    }
+
+    public function test_calls()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->get('https://api.sipgate.com/v2/calls')
+            ->willRespond(new Response(200, [], '{"data":[{"callId": "123ZXC"}]}'));
+
+        $calls = $this->sipgate->calls();
+        $this->assertIsArray($calls);
+        $this->assertInstanceOf(Call::class, $calls[0]);
+        $this->assertEquals('123ZXC', $calls[0]->callId);
     }
 
     public function test_initiateCall()

@@ -3,6 +3,7 @@
 namespace Orkhanahmadov\Sipgate;
 
 use GuzzleHttp\Client;
+use Orkhanahmadov\Sipgate\Resources\Call;
 use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Resources\User;
@@ -96,6 +97,25 @@ class Sipgate implements Telephony
         }
 
         return $devices;
+    }
+
+    /**
+     * Returns currently established calls
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return array
+     */
+    public function calls(): array
+    {
+        $response = $this->sendRequest('calls');
+
+        $calls = [];
+        foreach ($response['data'] as $call) {
+            array_push($calls, new Call($call));
+        }
+
+        return $calls;
     }
 
     /**
