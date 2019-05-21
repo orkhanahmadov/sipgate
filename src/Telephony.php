@@ -58,6 +58,15 @@ interface Telephony
     public function initiateCall($device, $callee, $callerId = null): string;
 
     /**
+     * Hangs up active call.
+     *
+     * @param string $callId
+     *
+     * @return bool
+     */
+    public function hangupCall(string $callId): bool;
+
+    /**
      * Starts or stops call recording.
      *
      * @param string $callId

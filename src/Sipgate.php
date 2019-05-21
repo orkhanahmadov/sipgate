@@ -151,6 +151,22 @@ class Sipgate implements Telephony
     }
 
     /**
+     * Hangs up active call.
+     *
+     * @param string $callId
+     *
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     *
+     * @return bool
+     */
+    public function hangupCall(string $callId): bool
+    {
+        $this->sendRequest('calls/'.$callId, 'DELETE');
+
+        return true;
+    }
+
+    /**
      * Starts or stops call recording.
      *
      * @param string $callId

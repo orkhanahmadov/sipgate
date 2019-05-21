@@ -104,6 +104,17 @@ class SipgateTest extends TestCase
         $this->assertEquals('ABC1234', $call);
     }
 
+    public function test_hangupCall()
+    {
+        $this->guzzler
+            ->expects($this->once())
+            ->delete('https://api.sipgate.com/v2/calls/ZXC123')
+            ->willRespond(new Response(204, []));
+
+        $hangup = $this->sipgate->hangupCall('ZXC123');
+        $this->assertTrue($hangup);
+    }
+
     public function test_recordCall()
     {
         $this->guzzler
