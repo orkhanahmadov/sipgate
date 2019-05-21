@@ -3,15 +3,10 @@
 namespace Orkhanahmadov\Sipgate;
 
 use GuzzleHttp\Client;
-use Orkhanahmadov\Sipgate\Resources\Call;
-use Orkhanahmadov\Sipgate\Resources\Device;
-use Orkhanahmadov\Sipgate\Resources\History;
-use Orkhanahmadov\Sipgate\Resources\User;
-use Orkhanahmadov\Sipgate\Traits\SendsRequest;
 
 class Sipgate implements Telephony
 {
-    use SendsRequest;
+    use Traits\SendsRequest;
 
     /**
      * @var string|null
@@ -22,7 +17,7 @@ class Sipgate implements Telephony
      */
     private $password = null;
     /**
-     * @var Client
+     * @var \GuzzleHttp\Client
      */
     private $client;
 
@@ -81,7 +76,7 @@ class Sipgate implements Telephony
 
         $users = [];
         foreach ($response['items'] as $user) {
-            array_push($users, new User($user));
+            array_push($users, new Resources\User($user));
         }
 
         return $users;
@@ -90,7 +85,7 @@ class Sipgate implements Telephony
     /**
      * Returns user devices.
      *
-     * @param User|string $user
+     * @param Resources\User|string $user
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
@@ -98,13 +93,13 @@ class Sipgate implements Telephony
      */
     public function devices($user): array
     {
-        $userId = $user instanceof User ? $user->id : $user;
+        $userId = $user instanceof Resources\User ? $user->id : $user;
 
         $response = $this->sendRequest($userId.'/devices');
 
         $devices = [];
         foreach ($response['items'] as $device) {
-            array_push($devices, new Device($user, $device));
+            array_push($devices, new Resources\Device($user, $device));
         }
 
         return $devices;
@@ -123,7 +118,7 @@ class Sipgate implements Telephony
 
         $calls = [];
         foreach ($response['data'] as $call) {
-            array_push($calls, new Call($call));
+            array_push($calls, new Resources\Call($call));
         }
 
         return $calls;
@@ -132,7 +127,7 @@ class Sipgate implements Telephony
     /**
      * Initiates new call and returns session ID.
      *
-     * @param Device|string   $device
+     * @param Resources\Device|string   $device
      * @param string|int      $callee
      * @param string|int|null $callerId
      *
@@ -144,7 +139,7 @@ class Sipgate implements Telephony
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
-                'caller'   => $device instanceof Device ? $device->id : $device,
+                'caller'   => $device instanceof Resources\Device ? $device->id : $device,
                 'callee'   => $callee,
                 'callerId' => $callerId,
             ],
@@ -207,7 +202,7 @@ class Sipgate implements Telephony
 
         $history = [];
         foreach ($response['items'] as $item) {
-            array_push($history, new History($item));
+            array_push($history, new Resources\History($item));
         }
 
         return $history;
