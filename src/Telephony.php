@@ -7,7 +7,7 @@ use Orkhanahmadov\Sipgate\Resources\Device;
 interface Telephony
 {
     /**
-     * Sets basic auth credentials
+     * Sets basic auth credentials.
      *
      * @param string $username
      * @param string $password
@@ -17,21 +17,21 @@ interface Telephony
     public function setBasicAuthCredentials(string $username, string $password);
 
     /**
-     * Returns account details
+     * Returns account details.
      *
      * @return array|null
      */
     public function account(): ?array;
 
     /**
-     * Returns all created users
+     * Returns all created users.
      *
      * @return array
      */
     public function users(): array;
 
     /**
-     * Returns user devices
+     * Returns user devices.
      *
      * @param \Orkhanahmadov\Sipgate\Resources\User|string $user
      *
@@ -40,14 +40,14 @@ interface Telephony
     public function devices($user): array;
 
     /**
-     * Returns currently established calls
+     * Returns currently established calls.
      *
      * @return array
      */
     public function calls(): array;
 
     /**
-     * Initiates new call and returns session ID
+     * Initiates new call and returns session ID.
      *
      * @param Device|string $device
      * @param string|int    $callee
@@ -58,7 +58,7 @@ interface Telephony
     public function initiateCall($device, $callee, array $options = []): string;
 
     /**
-     * Starts or stops call recording
+     * Starts or stops call recording.
      *
      * @param string $callId
      * @param bool   $value
@@ -69,7 +69,7 @@ interface Telephony
     public function recordCall(string $callId, bool $value, bool $announcement): bool;
 
     /**
-     * Returns call history
+     * Returns call history.
      *
      * @param array $options
      *
