@@ -59,4 +59,21 @@ class OAuth implements Auth
 
         return new Token(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
     }
+
+    public function refreshToken(string $refreshToken): Token
+    {
+        $response = $this->client->post(
+            'https://login.sipgate.com/auth/realms/third-party/protocol/openid-connect/token',
+            [
+                'form_params' => [
+                    'client_id'     => $this->clientId,
+                    'client_secret' => $this->clientSecret,
+                    'refresh_token' => $refreshToken,
+                    'grant_type'    => 'refresh_token',
+                ],
+            ]
+        );
+
+        return new Token(\GuzzleHttp\json_decode($response->getBody()->getContents(), true));
+    }
 }

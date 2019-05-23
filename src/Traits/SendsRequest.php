@@ -32,9 +32,22 @@ trait SendsRequest
      */
     private function sendRequest(string $url, string $method = 'GET', array $options = []): ?array
     {
+//        $request = new Request($method, $url, [
+//            'Authorization' => 'Bearer ',
+//            'Accept'        => 'application/json'
+//        ], '', '');
+//        $request->withHeader('Accept', 'application/json');
+//        $request->
+//
+//        if ()
+//        $request->withHeader('Accept', 'application/json');
+
         $response = $this->client->request($method, $url, array_merge(
             [
-                'headers' => ['Accept' => 'application/json'],
+                'headers' => [
+                    'Authorization' => 'Bearer ',
+                    'Accept'        => 'application/json'
+                ],
                 'auth'    => [$this->username, $this->password],
             ],
             $options
