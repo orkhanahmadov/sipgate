@@ -51,11 +51,6 @@ class Sipgate implements Telephony
         return $this;
     }
 
-    public function setOAuthToken(string $token)
-    {
-
-    }
-
     /**
      * Returns account details.
      *
