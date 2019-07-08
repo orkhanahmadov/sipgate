@@ -146,7 +146,7 @@ class SipgateTest extends TestCase
         $method = new ReflectionMethod(Sipgate::class, 'historyQueryString');
         $method->setAccessible(true);
 
-        $result = $method->invoke(new Sipgate, [
+        $result = $method->invoke(new Sipgate(), [
             'key1' => 'val1',
             'key2' => [
                 'val2',
