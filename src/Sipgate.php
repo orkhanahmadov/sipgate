@@ -209,7 +209,7 @@ class Sipgate implements Telephony
     }
 
     /**
-     * Generates history query string per SIPGate requirements
+     * Generates history query string per SIPGate requirements.
      *
      * @param array $options
      *

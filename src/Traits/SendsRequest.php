@@ -35,7 +35,7 @@ trait SendsRequest
         $response = $this->client->request($method, $url, array_merge(
             [
                 'headers' => [
-                    'Accept'        => 'application/json'
+                    'Accept'        => 'application/json',
                 ],
                 'auth'    => [$this->username, $this->password],
             ],
