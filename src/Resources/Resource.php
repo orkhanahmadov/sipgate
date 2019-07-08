@@ -2,8 +2,8 @@
 
 namespace Innoscripta\Sipgate\Resources;
 
-use JsonSerializable;
 use Innoscripta\Sipgate\Exceptions\ResourcePropertyNotFoundException;
+use JsonSerializable;
 
 abstract class Resource implements JsonSerializable
 {
