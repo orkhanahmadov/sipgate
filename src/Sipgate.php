@@ -198,7 +198,7 @@ class Sipgate implements Telephony
      */
     public function history(array $options = []): array
     {
-        $response = $this->sendRequest('history', 'GET', ['query' => $options]);
+        $response = $this->sendRequest('history?'.$this->historyQueryString($options), 'GET');
 
         $history = [];
         foreach ($response['items'] as $item) {
@@ -206,6 +206,30 @@ class Sipgate implements Telephony
         }
 
         return $history;
+    }
+
+    /**
+     * Generates history query string per SIPGate requirements
+     *
+     * @param array $options
+     *
+     * @return string
+     */
+    private function historyQueryString(array $options)
+    {
+        $queryString = [];
+
+        foreach ($options as $name => $value) {
+            if (is_array($value)) {
+                foreach ($value as $item) {
+                    array_push($queryString, $name.'='.$item);
+                }
+            } else {
+                array_push($queryString, $name.'='.$value);
+            }
+        }
+
+        return implode('&', $queryString);
     }
 
     /**

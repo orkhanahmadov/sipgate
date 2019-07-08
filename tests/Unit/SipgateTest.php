@@ -10,6 +10,7 @@ use Orkhanahmadov\Sipgate\Resources\History;
 use Orkhanahmadov\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Sipgate;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
+use ReflectionMethod;
 
 class SipgateTest extends TestCase
 {
@@ -31,7 +32,7 @@ class SipgateTest extends TestCase
         $this->sipgate->setClient($this->guzzler->getClient(['base_uri' => $this->sipgateBaseUri]));
     }
 
-    public function test_setBasicAuthCredentials()
+    public function testSetBasicAuthCredentials()
     {
         $sipgate = new Sipgate();
         $sipgate->setBasicAuthCredentials('new user', 'new password');
@@ -40,7 +41,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('new password', $sipgate->getPassword());
     }
 
-    public function test_account()
+    public function testAccount()
     {
         $this->guzzler
             ->expects($this->once())
@@ -52,7 +53,7 @@ class SipgateTest extends TestCase
         $this->assertTrue($account['verified']);
     }
 
-    public function test_users()
+    public function testUsers()
     {
         $this->guzzler
             ->expects($this->once())
@@ -65,7 +66,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('w0', $users[0]->id);
     }
 
-    public function test_devices()
+    public function testDevices()
     {
         $this->guzzler
             ->expects($this->once())
@@ -78,7 +79,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('e1', $devices[0]->id);
     }
 
-    public function test_calls()
+    public function testCalls()
     {
         $this->guzzler
             ->expects($this->once())
@@ -91,7 +92,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('123ZXC', $calls[0]->callId);
     }
 
-    public function test_initiateCall()
+    public function testInitiateCall()
     {
         $this->guzzler
             ->expects($this->once())
@@ -104,7 +105,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('ABC1234', $call);
     }
 
-    public function test_hangupCall()
+    public function testHangupCall()
     {
         $this->guzzler
             ->expects($this->once())
@@ -115,7 +116,7 @@ class SipgateTest extends TestCase
         $this->assertTrue($hangup);
     }
 
-    public function test_recordCall()
+    public function testRecordCall()
     {
         $this->guzzler
             ->expects($this->once())
@@ -126,7 +127,7 @@ class SipgateTest extends TestCase
         $this->assertTrue($this->sipgate->recordCall('ABC123', true, true));
     }
 
-    public function test_history()
+    public function testHistory()
     {
         $this->guzzler
             ->expects($this->once())
@@ -138,5 +139,22 @@ class SipgateTest extends TestCase
         $this->assertIsArray($history);
         $this->assertInstanceOf(History::class, $history[0]);
         $this->assertEquals('123456', $history[0]->id);
+    }
+
+    public function testHistoryQueryString()
+    {
+        $method = new ReflectionMethod(Sipgate::class, 'historyQueryString');
+        $method->setAccessible(true);
+
+        $result = $method->invoke(new Sipgate, [
+            'key1' => 'val1',
+            'key2' => [
+                'val2',
+                'val3',
+            ],
+            'key3' => 'val4',
+        ]);
+
+        $this->assertEquals('key1=val1&key2=val2&key2=val3&key3=val4', $result);
     }
 }
