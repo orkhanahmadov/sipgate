@@ -8,9 +8,10 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/innoscripta/sipgate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/innoscripta/sipgate/?branch=master)
 [![StyleCI](https://github.styleci.io/repos/185805106/shield?branch=master)](https://github.styleci.io/repos/185805106)
 
-[![Latest Stable Version](https://poser.pugx.org/innoscripta/sipgate/version)](https://packagist.org/packages/orkhanahmadov/sipgate)
-[![Total Downloads](https://poser.pugx.org/innoscripta/sipgate/downloads)](https://packagist.org/packages/orkhanahmadov/sipgate)
-[![License](https://poser.pugx.org/innoscripta/sipgate/license)](https://packagist.org/packages/orkhanahmadov/sipgate)
+[![Latest Stable Version](https://poser.pugx.org/innoscripta/sipgate/version)](https://packagist.org/packages/innoscripta/sipgate)
+[![Latest Unstable Version](https://poser.pugx.org/innoscripta/sipgate/v/unstable)](https://packagist.org/packages/innoscripta/sipgate)
+[![Total Downloads](https://poser.pugx.org/innoscripta/sipgate/downloads)](https://packagist.org/packages/innoscripta/sipgate)
+[![License](https://poser.pugx.org/innoscripta/sipgate/license)](https://packagist.org/packages/innoscripta/sipgate)
 
 ### Requirements
 
