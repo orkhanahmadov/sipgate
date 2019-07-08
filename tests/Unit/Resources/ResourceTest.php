@@ -1,10 +1,10 @@
 <?php
 
-namespace Orkhanahmadov\Sipgate\Tests\Unit;
+namespace Innoscripta\Sipgate\Tests\Unit;
 
-use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
-use Orkhanahmadov\Sipgate\Resources\Resource;
-use Orkhanahmadov\Sipgate\Tests\TestCase;
+use Innoscripta\Sipgate\Exceptions\ResourcePropertyNotFoundException;
+use Innoscripta\Sipgate\Resources\Resource;
+use Innoscripta\Sipgate\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkhanahmadov\Sipgate\Exceptions;
+namespace Innoscripta\Sipgate\Exceptions;
 
 use Exception;
 

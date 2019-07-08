@@ -1,9 +1,9 @@
 <?php
 
-namespace Orkhanahmadov\Sipgate\Resources;
+namespace Innoscripta\Sipgate\Resources;
 
 use JsonSerializable;
-use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
+use Innoscripta\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 
 abstract class Resource implements JsonSerializable
 {

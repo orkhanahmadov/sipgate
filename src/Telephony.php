@@ -1,8 +1,8 @@
 <?php
 
-namespace Orkhanahmadov\Sipgate;
+namespace Innoscripta\Sipgate;
 
-use Orkhanahmadov\Sipgate\Resources\Device;
+use Innoscripta\Sipgate\Resources\Device;
 
 interface Telephony
 {
@@ -33,7 +33,7 @@ interface Telephony
     /**
      * Returns user devices.
      *
-     * @param \Orkhanahmadov\Sipgate\Resources\User|string $user
+     * @param \Innoscripta\Sipgate\Resources\User|string $user
      *
      * @return array
      */

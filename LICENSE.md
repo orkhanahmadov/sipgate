@@ -1,4 +1,4 @@
-Copyright (c) 2019 Orkhan I. Ahmadov, https://github.com/orkhanahmadov <ahmadov90@gmail.com>
+Copyright (c) 2019 innoscripta GmbH, https://github.com/innoscripta <info@innoscripta.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

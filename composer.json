@@ -1,5 +1,5 @@
 {
-    "name": "orkhanahmadov/sipgate",
+    "name": "innoscripta/sipgate",
     "description": "PHP library for integrating with sipgate",
     "type": "library",
     "license": "MIT",
@@ -20,12 +20,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Orkhanahmadov\\Sipgate\\": "src/"
+            "Innoscripta\\Sipgate\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Orkhanahmadov\\Sipgate\\Tests\\": "tests/"
+            "Innoscripta\\Sipgate\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
