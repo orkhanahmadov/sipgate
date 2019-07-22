@@ -131,7 +131,7 @@ class Sipgate implements Telephony
      * @return string
      * @throws GuzzleException
      */
-    public function initiateCall($device, $callee, $callerId = null): string
+    public function call($device, $callee, $callerId = null): string
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
@@ -152,7 +152,7 @@ class Sipgate implements Telephony
      * @return bool
      * @throws GuzzleException
      */
-    public function hangupCall(string $callId): bool
+    public function hangup(string $callId): bool
     {
         $this->sendRequest('calls/'.$callId, 'DELETE');
 
@@ -169,7 +169,7 @@ class Sipgate implements Telephony
      * @return bool
      * @throws GuzzleException
      */
-    public function recordCall(string $callId, bool $value, bool $announcement): bool
+    public function record(string $callId, bool $value, bool $announcement): bool
     {
         $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
             'json' => [

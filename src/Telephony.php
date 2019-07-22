@@ -2,8 +2,8 @@
 
 namespace Orkhanahmadov\Sipgate;
 
-use Innoscripta\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\User;
 
 interface Telephony
 {
@@ -56,7 +56,7 @@ interface Telephony
      *
      * @return string
      */
-    public function initiateCall($device, $callee, $callerId = null): string;
+    public function call($device, $callee, $callerId = null): string;
 
     /**
      * Hangs up active call.
@@ -65,7 +65,7 @@ interface Telephony
      *
      * @return bool
      */
-    public function hangupCall(string $callId): bool;
+    public function hangup(string $callId): bool;
 
     /**
      * Starts or stops call recording.
@@ -76,7 +76,7 @@ interface Telephony
      *
      * @return bool
      */
-    public function recordCall(string $callId, bool $value, bool $announcement): bool;
+    public function record(string $callId, bool $value, bool $announcement): bool;
 
     /**
      * Returns call history.

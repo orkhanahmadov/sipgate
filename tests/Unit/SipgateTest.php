@@ -2,15 +2,15 @@
 
 namespace Innoscripta\Sipgate\Tests\Unit;
 
-use ReflectionMethod;
-use GuzzleHttp\Psr7\Response;
-use Orkhanahmadov\Sipgate\Sipgate;
 use BlastCloud\Guzzler\UsesGuzzler;
+use GuzzleHttp\Psr7\Response;
 use Orkhanahmadov\Sipgate\Resources\Call;
-use Orkhanahmadov\Sipgate\Resources\User;
-use Orkhanahmadov\Sipgate\Tests\TestCase;
 use Orkhanahmadov\Sipgate\Resources\Device;
 use Orkhanahmadov\Sipgate\Resources\History;
+use Orkhanahmadov\Sipgate\Resources\User;
+use Orkhanahmadov\Sipgate\Sipgate;
+use Orkhanahmadov\Sipgate\Tests\TestCase;
+use ReflectionMethod;
 
 class SipgateTest extends TestCase
 {
@@ -81,7 +81,7 @@ class SipgateTest extends TestCase
         $this->assertEquals('123ZXC', $calls[0]->callId);
     }
 
-    public function testInitiateCall()
+    public function testCall()
     {
         $this->guzzler
             ->expects($this->once())
@@ -90,22 +90,22 @@ class SipgateTest extends TestCase
             ->willRespond(new Response(200, [], '{"sessionId": "ABC1234"}'));
 
         $device = new Device(new User(), ['id' => 'deviceId']);
-        $call = $this->sipgate->initiateCall($device, '123', '456');
+        $call = $this->sipgate->call($device, '123', '456');
         $this->assertEquals('ABC1234', $call);
     }
 
-    public function testHangupCall()
+    public function testHangup()
     {
         $this->guzzler
             ->expects($this->once())
             ->delete('https://api.sipgate.com/v2/calls/ZXC123')
             ->willRespond(new Response(204, []));
 
-        $hangup = $this->sipgate->hangupCall('ZXC123');
+        $hangup = $this->sipgate->hangup('ZXC123');
         $this->assertTrue($hangup);
     }
 
-    public function testRecordCall()
+    public function testRecord()
     {
         $this->guzzler
             ->expects($this->once())
@@ -113,7 +113,7 @@ class SipgateTest extends TestCase
             ->withBody('{"value":true,"announcement":true}')
             ->willRespond(new Response(204, []));
 
-        $this->assertTrue($this->sipgate->recordCall('ABC123', true, true));
+        $this->assertTrue($this->sipgate->record('ABC123', true, true));
     }
 
     public function testHistory()
