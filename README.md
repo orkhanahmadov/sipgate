@@ -22,23 +22,29 @@
 composer require innoscripta/sipgate
 ```
 
+## Testing
 
-
-
-
-
-### Testing
-You can run the tests with:
-
-```bash
-vendor/bin/phpunit
+``` bash
+composer test
 ```
 
-### Changelog
-Please see [CHANGELOG](https://github.com/innoscripta/sipgate/blob/master/CHANGELOG.md) for more information what has changed recently.
+## Changelog
 
-### Contributing
-Please see [CONTRIBUTING](https://github.com/innoscripta/sipgate/blob/master/CONTRIBUTING.md) for details.
+Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-### License
-The MIT License (MIT). Please see [LICENSE](https://github.com/innoscripta/sipgate/blob/master/LICENSE.md) file for more information.
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+
+## Security
+
+If you discover any security related issues, please email ahmadov90@gmail.com instead of using the issue tracker.
+
+## Credits
+
+- [Orkhan Ahmadov](https://github.com/orkhanahmadov)
+- [All Contributors](../../contributors)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

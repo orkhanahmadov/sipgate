@@ -1,8 +1,13 @@
 {
     "name": "orkhanahmadov/sipgate",
     "description": "PHP library for integrating with sipgate",
-    "type": "library",
+    "keywords": [
+        "sip",
+        "sipgate"
+    ],
+    "homepage": "https://github.com/orkhanahmadov/sipgate",
     "license": "MIT",
+    "type": "library",
     "authors": [
         {
             "name": "Orkhan Ahmadov",
@@ -28,11 +33,13 @@
             "Orkhanahmadov\\Sipgate\\Tests\\": "tests/"
         }
     },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "preferred-install": "dist",
-        "sort-packages": true,
-        "optimize-autoloader": true
+        "sort-packages": true
     }
 }
