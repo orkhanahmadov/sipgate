@@ -21,17 +21,6 @@ class SipgateTest extends TestCase
      */
     private $sipgate;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->sipgate = new Sipgate(
-            getenv('SIPGATE_USERNAME'),
-            getenv('SIPGATE_PASSWORD')
-        );
-        $this->sipgate->setClient($this->guzzler->getClient(['base_uri' => $this->sipgateBaseUri]));
-    }
-
     public function testSetBasicAuthCredentials()
     {
         $sipgate = new Sipgate();
@@ -156,5 +145,16 @@ class SipgateTest extends TestCase
         ]);
 
         $this->assertEquals('key1=val1&key2=val2&key2=val3&key3=val4', $result);
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->sipgate = new Sipgate(
+            getenv('SIPGATE_USERNAME'),
+            getenv('SIPGATE_PASSWORD')
+        );
+        $this->sipgate->setClient($this->guzzler->getClient(['base_uri' => $this->sipgateBaseUri]));
     }
 }

@@ -3,6 +3,7 @@
 namespace Orkhanahmadov\Sipgate;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
 
 class Sipgate implements Telephony
 {
@@ -17,7 +18,7 @@ class Sipgate implements Telephony
      */
     private $password = null;
     /**
-     * @var \GuzzleHttp\Client
+     * @var Client
      */
     private $client;
 
@@ -54,9 +55,9 @@ class Sipgate implements Telephony
     /**
      * Returns account details.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array|null
+     * @throws GuzzleException
+     *
      */
     public function account(): ?array
     {
@@ -66,9 +67,9 @@ class Sipgate implements Telephony
     /**
      * Returns all created users.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     * @throws GuzzleException
+     *
      */
     public function users(): array
     {
@@ -87,15 +88,15 @@ class Sipgate implements Telephony
      *
      * @param Resources\User|string $user
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     * @throws GuzzleException
+     *
      */
     public function devices($user): array
     {
         $userId = $user instanceof Resources\User ? $user->id : $user;
 
-        $response = $this->sendRequest($userId.'/devices');
+        $response = $this->sendRequest($userId . '/devices');
 
         $devices = [];
         foreach ($response['items'] as $device) {
@@ -108,9 +109,9 @@ class Sipgate implements Telephony
     /**
      * Returns currently established calls.
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     * @throws GuzzleException
+     *
      */
     public function calls(): array
     {
@@ -128,19 +129,19 @@ class Sipgate implements Telephony
      * Initiates new call and returns session ID.
      *
      * @param Resources\Device|string $device
-     * @param string|int              $callee
-     * @param string|int|null         $callerId
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @param string|int $callee
+     * @param string|int|null $callerId
      *
      * @return string
+     * @throws GuzzleException
+     *
      */
     public function initiateCall($device, $callee, $callerId = null): string
     {
         $response = $this->sendRequest('sessions/calls', 'POST', [
             'json' => [
-                'caller'   => $device instanceof Resources\Device ? $device->id : $device,
-                'callee'   => $callee,
+                'caller' => $device instanceof Resources\Device ? $device->id : $device,
+                'callee' => $callee,
                 'callerId' => $callerId,
             ],
         ]);
@@ -153,13 +154,13 @@ class Sipgate implements Telephony
      *
      * @param string $callId
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return bool
+     * @throws GuzzleException
+     *
      */
     public function hangupCall(string $callId): bool
     {
-        $this->sendRequest('calls/'.$callId, 'DELETE');
+        $this->sendRequest('calls/' . $callId, 'DELETE');
 
         return true;
     }
@@ -168,18 +169,18 @@ class Sipgate implements Telephony
      * Starts or stops call recording.
      *
      * @param string $callId
-     * @param bool   $value
-     * @param bool   $announcement
-     *
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @param bool $value
+     * @param bool $announcement
      *
      * @return bool
+     * @throws GuzzleException
+     *
      */
     public function recordCall(string $callId, bool $value, bool $announcement): bool
     {
-        $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
+        $this->sendRequest('calls/' . $callId . '/recording', 'PUT', [
             'json' => [
-                'value'        => $value,
+                'value' => $value,
                 'announcement' => $announcement,
             ],
         ]);
@@ -192,13 +193,13 @@ class Sipgate implements Telephony
      *
      * @param array $options
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     *
      * @return array
+     * @throws GuzzleException
+     *
      */
     public function history(array $options = []): array
     {
-        $response = $this->sendRequest('history?'.$this->historyQueryString($options), 'GET');
+        $response = $this->sendRequest('history?' . $this->historyQueryString($options), 'GET');
 
         $history = [];
         foreach ($response['items'] as $item) {
@@ -222,10 +223,10 @@ class Sipgate implements Telephony
         foreach ($options as $name => $value) {
             if (is_array($value)) {
                 foreach ($value as $item) {
-                    array_push($queryString, $name.'='.$item);
+                    array_push($queryString, $name . '=' . $item);
                 }
             } else {
-                array_push($queryString, $name.'='.$value);
+                array_push($queryString, $name . '=' . $value);
             }
         }
 

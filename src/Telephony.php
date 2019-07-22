@@ -2,6 +2,7 @@
 
 namespace Orkhanahmadov\Sipgate;
 
+use Innoscripta\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Resources\Device;
 
 interface Telephony
@@ -33,7 +34,7 @@ interface Telephony
     /**
      * Returns user devices.
      *
-     * @param \Innoscripta\Sipgate\Resources\User|string $user
+     * @param User|string $user
      *
      * @return array
      */
@@ -49,8 +50,8 @@ interface Telephony
     /**
      * Initiates new call and returns session ID.
      *
-     * @param Device|string   $device
-     * @param string|int      $callee
+     * @param Device|string $device
+     * @param string|int $callee
      * @param string|int|null $callerId
      *
      * @return string
@@ -70,8 +71,8 @@ interface Telephony
      * Starts or stops call recording.
      *
      * @param string $callId
-     * @param bool   $value
-     * @param bool   $announcement
+     * @param bool $value
+     * @param bool $announcement
      *
      * @return bool
      */

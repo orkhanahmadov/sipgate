@@ -2,8 +2,8 @@
 
 namespace Orkhanahmadov\Sipgate\Resources;
 
-use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 use JsonSerializable;
+use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 
 abstract class Resource implements JsonSerializable
 {
@@ -25,9 +25,9 @@ abstract class Resource implements JsonSerializable
     /**
      * @param string $name
      *
+     * @return mixed
      * @throws ResourcePropertyNotFoundException
      *
-     * @return mixed
      */
     public function __get(string $name)
     {

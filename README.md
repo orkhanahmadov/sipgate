@@ -2,16 +2,15 @@
 
 ## :telephone_receiver: PHP library for integrating with [sipgate](https://www.sipgate.com)
 
-[![Build Status](https://travis-ci.org/innoscripta/sipgate.svg?branch=master)](https://travis-ci.org/innoscripta/sipgate)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/cdce512968bf2d326369/test_coverage)](https://codeclimate.com/github/innoscripta/sipgate/test_coverage)
-[![Maintainability](https://api.codeclimate.com/v1/badges/cdce512968bf2d326369/maintainability)](https://codeclimate.com/github/innoscripta/sipgate/maintainability)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/innoscripta/sipgate/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/innoscripta/sipgate/?branch=master)
-[![StyleCI](https://github.styleci.io/repos/185805106/shield?branch=master)](https://github.styleci.io/repos/185805106)
+[![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/sipgate/v/stable)](https://packagist.org/packages/orkhanahmadov/sipgate)
+[![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/sipgate/v/unstable)](https://packagist.org/packages/orkhanahmadov/sipgate)
+[![GitHub license](https://img.shields.io/github/license/orkhanahmadov/sipgate.svg)](https://github.com/orkhanahmadov/sipgate/blob/master/LICENSE.md)
 
-[![Latest Stable Version](https://poser.pugx.org/innoscripta/sipgate/version)](https://packagist.org/packages/innoscripta/sipgate)
-[![Latest Unstable Version](https://poser.pugx.org/innoscripta/sipgate/v/unstable)](https://packagist.org/packages/innoscripta/sipgate)
-[![Total Downloads](https://poser.pugx.org/innoscripta/sipgate/downloads)](https://packagist.org/packages/innoscripta/sipgate)
-[![License](https://poser.pugx.org/innoscripta/sipgate/license)](https://packagist.org/packages/innoscripta/sipgate)
+[![Build Status](https://img.shields.io/travis/orkhanahmadov/sipgate.svg)](https://travis-ci.org/orkhanahmadov/sipgate)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/orkhanahmadov/sipgate.svg)](https://codeclimate.com/github/orkhanahmadov/sipgate/test_coverage)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/orkhanahmadov/sipgate.svg)](https://codeclimate.com/github/orkhanahmadov/sipgate/maintainability)
+[![Quality Score](https://img.shields.io/scrutinizer/g/orkhanahmadov/sipgate.svg)](https://scrutinizer-ci.com/g/orkhanahmadov/sipgate)
+[![StyleCI](https://github.styleci.io/repos/185805106/shield?branch=master)](https://github.styleci.io/repos/185805106)
 
 ### Requirements
 

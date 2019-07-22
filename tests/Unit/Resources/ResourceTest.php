@@ -5,26 +5,14 @@ namespace Innoscripta\Sipgate\Tests\Unit;
 use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
 use Orkhanahmadov\Sipgate\Resources\Resource;
 use Orkhanahmadov\Sipgate\Tests\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class ResourceTest extends TestCase
 {
     /**
-     * @var \PHPUnit\Framework\MockObject\MockObject
+     * @var MockObject
      */
     private $stub;
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->stub = $this->getMockBuilder(Resource::class)
-            ->setMethods(['__construct'])
-            ->setConstructorArgs([[
-                'prop1' => 'val1',
-                'prop2' => 'val2',
-            ]])
-            ->getMock();
-    }
 
     public function test_throws_exception_if_property_is_not_set()
     {
@@ -42,5 +30,18 @@ class ResourceTest extends TestCase
             'prop1' => 'val1',
             'prop2' => 'val2',
         ], $this->stub->jsonSerialize());
+    }
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->stub = $this->getMockBuilder(Resource::class)
+            ->setMethods(['__construct'])
+            ->setConstructorArgs([[
+                'prop1' => 'val1',
+                'prop2' => 'val2',
+            ]])
+            ->getMock();
     }
 }
