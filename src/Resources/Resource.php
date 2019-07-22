@@ -27,11 +27,10 @@ abstract class Resource implements JsonSerializable
      *
      * @return mixed
      * @throws ResourcePropertyNotFoundException
-     *
      */
     public function __get(string $name)
     {
-        if (!isset($this->properties[$name])) {
+        if (! isset($this->properties[$name])) {
             throw new ResourcePropertyNotFoundException($name);
         }
 

@@ -39,7 +39,6 @@ trait SendsRequest
      *
      * @return array|null
      * @throws GuzzleException
-     *
      */
     private function sendRequest(string $url, string $method = 'GET', array $options = []): ?array
     {
