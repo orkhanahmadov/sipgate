@@ -57,7 +57,6 @@ class Sipgate implements Telephony
      *
      * @return array|null
      * @throws GuzzleException
-     *
      */
     public function account(): ?array
     {
@@ -69,7 +68,6 @@ class Sipgate implements Telephony
      *
      * @return array
      * @throws GuzzleException
-     *
      */
     public function users(): array
     {
@@ -90,13 +88,12 @@ class Sipgate implements Telephony
      *
      * @return array
      * @throws GuzzleException
-     *
      */
     public function devices($user): array
     {
         $userId = $user instanceof Resources\User ? $user->id : $user;
 
-        $response = $this->sendRequest($userId . '/devices');
+        $response = $this->sendRequest($userId.'/devices');
 
         $devices = [];
         foreach ($response['items'] as $device) {
@@ -111,7 +108,6 @@ class Sipgate implements Telephony
      *
      * @return array
      * @throws GuzzleException
-     *
      */
     public function calls(): array
     {
@@ -134,7 +130,6 @@ class Sipgate implements Telephony
      *
      * @return string
      * @throws GuzzleException
-     *
      */
     public function initiateCall($device, $callee, $callerId = null): string
     {
@@ -156,11 +151,10 @@ class Sipgate implements Telephony
      *
      * @return bool
      * @throws GuzzleException
-     *
      */
     public function hangupCall(string $callId): bool
     {
-        $this->sendRequest('calls/' . $callId, 'DELETE');
+        $this->sendRequest('calls/'.$callId, 'DELETE');
 
         return true;
     }
@@ -174,11 +168,10 @@ class Sipgate implements Telephony
      *
      * @return bool
      * @throws GuzzleException
-     *
      */
     public function recordCall(string $callId, bool $value, bool $announcement): bool
     {
-        $this->sendRequest('calls/' . $callId . '/recording', 'PUT', [
+        $this->sendRequest('calls/'.$callId.'/recording', 'PUT', [
             'json' => [
                 'value' => $value,
                 'announcement' => $announcement,
@@ -195,11 +188,10 @@ class Sipgate implements Telephony
      *
      * @return array
      * @throws GuzzleException
-     *
      */
     public function history(array $options = []): array
     {
-        $response = $this->sendRequest('history?' . $this->historyQueryString($options), 'GET');
+        $response = $this->sendRequest('history?'.$this->historyQueryString($options), 'GET');
 
         $history = [];
         foreach ($response['items'] as $item) {
@@ -223,10 +215,10 @@ class Sipgate implements Telephony
         foreach ($options as $name => $value) {
             if (is_array($value)) {
                 foreach ($value as $item) {
-                    array_push($queryString, $name . '=' . $item);
+                    array_push($queryString, $name.'='.$item);
                 }
             } else {
-                array_push($queryString, $name . '=' . $value);
+                array_push($queryString, $name.'='.$value);
             }
         }
 
