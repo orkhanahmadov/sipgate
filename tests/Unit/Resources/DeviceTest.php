@@ -2,9 +2,9 @@
 
 namespace Innoscripta\Sipgate\Tests\Unit;
 
-use Innoscripta\Sipgate\Resources\Device;
-use Innoscripta\Sipgate\Resources\User;
-use Innoscripta\Sipgate\Tests\TestCase;
+use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\User;
+use Orkhanahmadov\Sipgate\Tests\TestCase;
 
 class DeviceTest extends TestCase
 {

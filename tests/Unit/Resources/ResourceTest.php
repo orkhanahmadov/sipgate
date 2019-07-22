@@ -2,9 +2,9 @@
 
 namespace Innoscripta\Sipgate\Tests\Unit;
 
-use Innoscripta\Sipgate\Exceptions\ResourcePropertyNotFoundException;
-use Innoscripta\Sipgate\Resources\Resource;
-use Innoscripta\Sipgate\Tests\TestCase;
+use Orkhanahmadov\Sipgate\Exceptions\ResourcePropertyNotFoundException;
+use Orkhanahmadov\Sipgate\Resources\Resource;
+use Orkhanahmadov\Sipgate\Tests\TestCase;
 
 class ResourceTest extends TestCase
 {
@@ -13,7 +13,7 @@ class ResourceTest extends TestCase
      */
     private $stub;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

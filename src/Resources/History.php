@@ -1,6 +1,6 @@
 <?php
 
-namespace Innoscripta\Sipgate\Resources;
+namespace Orkhanahmadov\Sipgate\Resources;
 
 /**
  * @property string id

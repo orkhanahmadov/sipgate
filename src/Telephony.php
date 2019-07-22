@@ -1,8 +1,8 @@
 <?php
 
-namespace Innoscripta\Sipgate;
+namespace Orkhanahmadov\Sipgate;
 
-use Innoscripta\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\Device;
 
 interface Telephony
 {

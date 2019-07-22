@@ -1,6 +1,6 @@
 <?php
 
-namespace Innoscripta\Sipgate\Traits;
+namespace Orkhanahmadov\Sipgate\Traits;
 
 use GuzzleHttp\Client;
 

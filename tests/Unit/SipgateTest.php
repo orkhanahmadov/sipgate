@@ -4,12 +4,12 @@ namespace Innoscripta\Sipgate\Tests\Unit;
 
 use BlastCloud\Guzzler\UsesGuzzler;
 use GuzzleHttp\Psr7\Response;
-use Innoscripta\Sipgate\Resources\Call;
-use Innoscripta\Sipgate\Resources\Device;
-use Innoscripta\Sipgate\Resources\History;
-use Innoscripta\Sipgate\Resources\User;
-use Innoscripta\Sipgate\Sipgate;
-use Innoscripta\Sipgate\Tests\TestCase;
+use Orkhanahmadov\Sipgate\Resources\Call;
+use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\History;
+use Orkhanahmadov\Sipgate\Resources\User;
+use Orkhanahmadov\Sipgate\Sipgate;
+use Orkhanahmadov\Sipgate\Tests\TestCase;
 use ReflectionMethod;
 
 class SipgateTest extends TestCase

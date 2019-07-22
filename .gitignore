@@ -1,6 +1,9 @@
-/.idea
-/vendor
+build
 composer.lock
-.phpunit.result.cache
+docs
+vendor
+coverage
+/.idea
 .php_cs.cache
 phpunit.xml
+.phpunit.result.cache

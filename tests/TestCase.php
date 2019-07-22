@@ -1,6 +1,6 @@
 <?php
 
-namespace Innoscripta\Sipgate\Tests;
+namespace Orkhanahmadov\Sipgate\Tests;
 
 class TestCase extends \PHPUnit\Framework\TestCase
 {
