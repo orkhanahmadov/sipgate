@@ -121,7 +121,7 @@ Use `call()` method to initiate a new call. Method accepts 3 parameters:
 * `$callerId` (optional) - Set this parameter if you want to show different number to callee other. When skipped `$device` number will be used.
 
 ``` php
-$sipgate->initiateCall($device, $callee, $callerId);
+$sipgate->call($device, $callee, $callerId);
 ```
 Returns call's session ID.
 
