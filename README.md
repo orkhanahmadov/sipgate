@@ -12,7 +12,7 @@
 
 ## Requirements
 
-**PHP 7.2** or higher and ``json`` extension.
+**PHP 7.1** or higher and ``json`` extension.
 
 ## Installation
 
