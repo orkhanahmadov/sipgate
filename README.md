@@ -2,11 +2,12 @@
 
 [![Latest Stable Version](https://poser.pugx.org/orkhanahmadov/sipgate/v/stable)](https://packagist.org/packages/orkhanahmadov/sipgate)
 [![Latest Unstable Version](https://poser.pugx.org/orkhanahmadov/sipgate/v/unstable)](https://packagist.org/packages/orkhanahmadov/sipgate)
+[![Total Downloads](https://img.shields.io/packagist/dt/orkhanahmadov/sipgate)](https://packagist.org/packages/orkhanahmadov/sipgate)
 [![GitHub license](https://img.shields.io/github/license/orkhanahmadov/sipgate.svg)](https://github.com/orkhanahmadov/sipgate/blob/master/LICENSE.md)
 
 [![Build Status](https://img.shields.io/travis/orkhanahmadov/sipgate.svg)](https://travis-ci.org/orkhanahmadov/sipgate)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/orkhanahmadov/sipgate.svg)](https://codeclimate.com/github/orkhanahmadov/sipgate/test_coverage)
-[![Maintainability](https://img.shields.io/codeclimate/maintainability/orkhanahmadov/sipgate.svg)](https://codeclimate.com/github/orkhanahmadov/sipgate/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/d3be17d3566be7027037/test_coverage)](https://codeclimate.com/github/orkhanahmadov/sipgate/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/d3be17d3566be7027037/maintainability)](https://codeclimate.com/github/orkhanahmadov/sipgate/maintainability)
 [![Quality Score](https://img.shields.io/scrutinizer/g/orkhanahmadov/sipgate.svg)](https://scrutinizer-ci.com/g/orkhanahmadov/sipgate)
 [![StyleCI](https://github.styleci.io/repos/185805106/shield?branch=master)](https://github.styleci.io/repos/185805106)
 
