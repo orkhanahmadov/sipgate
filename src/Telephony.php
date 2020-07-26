@@ -2,8 +2,8 @@
 
 namespace Orkhanahmadov\Sipgate;
 
-use Orkhanahmadov\Sipgate\Resources\User;
 use Orkhanahmadov\Sipgate\Resources\Device;
+use Orkhanahmadov\Sipgate\Resources\User;
 
 interface Telephony
 {
